@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vids-j Shop</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    header {
+      background-color: rgb(165, 2, 54);
+      color: #ffffff;
+      padding: 10px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 6px rgba(3, 230, 18, 0.532);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+
+    .product-card h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      margin-bottom: 15px;
+      color: #000000;
+    }
+
+    .product-card button {
+      background-color: #000000;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-card button:hover {
+      background-color: #8e0101;
+    }
+
+    .cart-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      width: 300px;
+    }
+
+    .cart-container h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .cart-container ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .cart-item span {
+      color: #555;
+    }
+
+    .cart-total {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .quantity-select {
+      margin-bottom: 15px;
+    }
+
+    .quantity-select select {
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .checkout-btn {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>vids-j Shop</h1>
+  </header>
+
+  <main id="products">
+    <!-- Product cards will be dynamically generated here -->
+  </main>
+
+  <div class="cart-container" id="cartContainer">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <div class="cart-total" id="cartTotal"></div>
+    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+  </div>
+
+  <footer style="background-color: rgba(0, 0, 0, 0.7); color: #fff; text-align: center; padding: 10px;">
+    <p>&copy; 2024 vids-j Shop. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Sample product data (replace with your actual product data)
+    const products = [
+      {
+        id: 1,
+        name: 'Modern Sofa - Brown',
+        price: 500,
+        image: './assets/images/brownsofa.jpg',
+        category: 'Sofas',
+      },
+      {
+        id: 2,
+        name: 'Vintage Bookshelf',
+        price: 200,
+        image: './assets/images/vintageshop.jpg',
+        category: 'Shelves',
+      },
+      {
+        id: 3,
+        name: 'Elegant Coffee Table',
+        price: 150,
+        image: './assets/images/Coffee Table.jpg',
+        category: 'Tables',
+      },
+      {
+        id: 4,
+        name: 'Stylish Curtains - Red',
+        price: 50,
+        image: './assets/images/recurtains.jpg',
+        category: 'Curtains',
+      },
+      {
+        id: 5,
+        name: 'Abstract Painting',
+        price: 80,
+        image: './assets/images/abstractpainting.jpg',
+        category: 'Paintings',
+      },
+      {
+        id: 6,
+        name: 'Modern Vase Set',
+        price: 30,
+        image: './assets/images/Modern Flower Pot for Minimalist Decoration.jpg',
+        category: 'Decor Items',
+      },
+      {
+        id: 7,
+        name: 'Leather Armchair - Black',
+        price: 300,
+        image: './assets/images/Black Buttoned Back Leather Armchair.jpg',
+        category: 'Chairs',
+      },
+      {
+        id: 8,
+        name: 'Wooden Dining Table',
+        price: 400,
+        image: './assets/images/Mahogany Dining Table.jpg',
+        category: 'Tables',
+      },
+      {
+        id: 9,
+        name: 'Luxury Bed - Queen Size',
+        price: 800,
+        image: './assets/images/Lily Pink Velvet Full Bed _ 1StopBedrooms.jpg',
+        category: 'Beds',
+      },
+      {
+        id: 10,
+        name: 'Vintage Rug',
+        price: 120,
+        image: './assets/images/Couristan Old World Classics Kerman Med Burgundy Area Rug.jpg',
+        category: 'Rugs',
+      },
+      {
+        id: 11,
+        name: 'Designer Ceiling Lamp',
+        price: 180,
+        image: './assets/images/Led Deckenleuchte Modern aus Polyethylen Blume Design für Wohnzimmer.jpg',
+        category: 'Lighting',
+      },
+      {
+        id: 12,
+        name: 'Metal Wall Art',
+        price: 60,
+        image: './assets/images/Pierre Yovanovitch Designs Chic NYC Apartment for The Invisible Collection Co-founder Anna Zaoui - Interior Design.jpg',
+        category: 'Wall Art',
+      },
+      {
+        id: 13,
+        name: 'Industrial Bar Stool',
+        price: 90,
+        image: './assets/images/Vasagle Tall Bar Stools Set of 2 Bar Chairs 28_7 Inches Barstools with Back Counter Height Stool with Backrest Steel Frame Industrial Rustic Brown and Black, Multicolor.jpg',
+        category: 'Chairs',
+      },
+      {
+        id: 14,
+        name: 'Glass Top Dining Table',
+        price: 600,
+        image: './assets/images/View From The Top.jpg',
+        category: 'Tables',
+      },
+      {
+        id: 15,
+        name: 'Vintage Chandelier',
+        price: 250,
+        image: './assets/images/S-Cevada Farmhouse Glass Lotus Pendant Lighting Industrial Vintage Loft Bar Ceiling Hanging Lamp E26 Brass Holder 1-Light Chandelier 9_84_ (Green).jpg',
+        category: 'Lighting',
+      },
+      {
+        id: 16,
+        name: 'Floral Pattern Armchair',
+        price: 280,
+        image: './assets/images/Jimena Accent Chair.jpg',
+        category: 'Chairs',
+      },
+      {
+        id: 17,
+        name: 'Antique Console Table',
+        price: 350,
+        image: './assets/images/French 18th C_ Louis XV Style Carved and Gilded Console Table.jpg',
+        category: 'Tables',
+      },
+      {
+        id: 18,
+        name: 'Classic Desk Lamp',
+        price: 70,
+        image: './assets/images/Wildwood Classic Desk Lamp.jpg',
+        category: 'Lighting',
+      },
+      {
+        id: 19,
+        name: 'Modern Wall Clock',
+        price: 40,
+        image: './assets/images/Artistic wall clocks ,Abstract clock designs ,Decorative timepieces ,Multifunctional clocks.jpg',
+        category: 'Decor Items',
+      },
+      {
+        id: 20,
+        name: 'Faux Leather Recliner',
+        price: 550,
+        image: './assets/images/Sadora Orange Recliner & Ottoman.jpg',
+        category: 'Chairs',
+      },
+      {
+        id: 21,
+        name: 'Rustic Side Table',
+        price: 120,
+        image: './assets/images/Floating Disks Side Table (13_).jpg',
+        category: 'Tables',
+      },
+      {
+        id: 22,
+        name: 'Abstract Sculpture',
+        price: 180,
+        image: './assets/images/Harumi Nakashima and Akihiro Maeta at Gallery VOICE, Tajimi, Japan.jpg',
+        category: 'Decor Items',
+      },
+    ];
+
+    const cartItems = [];
+
+    // Function to generate product cards
+    function generateProductCards() {
+      const productsContainer = document.getElementById('products');
+
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.classList.add('product-card');
+
+        const image = document.createElement('img');
+        image.src = product.image;
+        image.alt = product.name;
+
+        const name = document.createElement('h2');
+        name.textContent = product.name;
+
+        const price = document.createElement('p');
+        price.textContent = `Price: $${product.price}`;
+
+        const button = document.createElement('button');
+        button.textContent = 'Add to Cart';
+        button.addEventListener('click', () => addToCart(product));
+
+        card.appendChild(image);
+        card.appendChild(name);
+        card.appendChild(price);
+        card.appendChild(button);
+
+        productsContainer.appendChild(card);
+      });
+    }
+
+    // Add item to cart
+    function addToCart(product) {
+      const existingItem = cartItems.find(item => item.id === product.id);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cartItems.push({ ...product, quantity: 1 });
+      }
+
+      updateCartUI();
+    }
+
+    // Update cart UI
+    function updateCartUI() {
+      const cartItemsContainer = document.getElementById('cartItems');
+      cartItemsContainer.innerHTML = '';
+
+      cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+        li.innerHTML = `
+          <span>${item.name} x ${item.quantity}</span>
+          <span>$${item.price * item.quantity}</span>
+        `;
+        cartItemsContainer.appendChild(li);
+      });
+
+      const cartTotal = document.getElementById('cartTotal');
+      const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+      cartTotal.textContent = `Total: $${totalAmount}`;
+    }
+
+    // Initialize the shop
+    window.addEventListener('load', () => {
+      generateProductCards();
+      updateCartUI();
+
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      checkoutBtn.addEventListener('click', () => alert('Redirecting to checkout...'));
+    });
+  </script>
+</body>
+</html>

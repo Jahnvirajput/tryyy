@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interior Design Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1; /* Move video behind other content */
+  }
+
+  .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Adding transparency */
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px; /* Add some space between buttons */
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .result-images {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .result-image {
+    max-width: calc(33.33% - 10px);
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+  <video autoplay muted loop id="myVideo">
+    <source src="./assets/images/vecteezy_a-living-room-with-two-chairs-and-a-table_36249578.mp4" type="video/mp4">
+  </video>
+  <div class="container">
+    <h2>Interior Design Form</h2>
+    <form action="#" method="post" onsubmit="return submitForm()">
+      <div class="form-group">
+        <label for="wall-color">Wall Color:</label>
+        <select id="wall-color" name="wall-color" aria-label="Select Wall Color">
+          <option value="white">White</option>
+          <option value="beige">Beige</option>
+          <option value="grey">Grey</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="wall-design">Wall Design:</label>
+        <select id="wall-design" name="wall-design" aria-label="Select Wall Design">
+          <option value="stripes">Stripes</option>
+          <option value="floral">Floral</option>
+          <option value="geometric">Geometric</option>
+          <option value="brick">Brick</option>
+          <option value="abstract">Abstract</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="interior-items">Interior Items:</label>
+        <select id="interior-items" name="interior-items" multiple aria-label="Select Interior Items">
+          <option value="furniture">Furniture</option>
+          <option value="curtains">Curtains</option>
+          <option value="rugs">Rugs</option>
+          <option value="decorations">Decorations</option>
+          <option value="lighting">Lighting</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="flooring">Flooring Options:</label>
+        <select id="flooring" name="flooring" aria-label="Select Flooring Options">
+          <option value="hardwood">Hardwood</option>
+          <option value="tiles">Tiles</option>
+          <option value="carpet">Carpet</option>
+          <option value="laminate">Laminate</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="window-treatments">Window Treatments:</label>
+        <select id="window-treatments" name="window-treatments" aria-label="Select Window Treatments">
+          <option value="blinds">Blinds</option>
+          <option value="shades">Shades</option>
+          <option value="drapes">Drapes</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="accent-wall">Accent Wall:</label>
+        <select id="accent-wall" name="accent-wall" aria-label="Select Accent Wall Color/Pattern">
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="pattern">Pattern</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="storage-solutions">Storage Solutions:</label>
+        <select id="storage-solutions" name="storage-solutions" aria-label="Select Storage Solutions">
+          <option value="shelves">Shelves</option>
+          <option value="cabinets">Cabinets</option>
+          <option value="organizers">Organizers</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="room-layout">Room Layout:</label>
+        <select id="room-layout" name="room-layout" aria-label="Select Room Layout">
+          <option value="open-concept">Open Concept</option>
+          <option value="traditional">Traditional</option>
+          <option value="eclectic">Eclectic</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="artwork-decor">Artwork and Wall Decor:</label>
+        <select id="artwork-decor" name="artwork-decor" aria-label="Select Artwork and Wall Decor Styles">
+          <option value="modern">Modern</option>
+          <option value="vintage">Vintage</option>
+          <option value="contemporary">Contemporary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="technology">Technology Integration:</label>
+        <select id="technology" name="technology" aria-label="Select Technology Integration">
+          <option value="smart-lighting">Smart Lighting</option>
+          <option value="home-automation">Home Automation</option>
+          <option value="entertainment-systems">Entertainment Systems</option>
+        </select>
+      </div

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    .gallery-item {
+      width: 300px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .gallery-item h3 {
+      margin: 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .studio {
+      background-color: rgb(160, 126, 240);
+      text-align: center;
+      font-size: xx-large;
+      padding: 10px 0;
+    }
+
+    .search-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 300px;
+      margin-right: 10px;
+    }
+
+    .search-button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="studio"><b>Studio</b></div>
+  
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search for artwork...">
+    <button onclick="searchArtwork()" class="search-button">Search</button>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="./assets/studio/Boho Maximalist Living Room Designs.jpeg" alt="Boho Maximalist Living Room Designs">
+      <h3>Boho Maximalist Living Room Designs</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Boho Style Decor.jpeg" alt="Boho Style Decor">
+      <h3>Boho Style Decor</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/3+ Colourful Living Room Design Directions for a Playful Interior • 333+ Art Images (1).jpeg" alt="Colourful Living Room Design Directions">
+      <h3>Colourful Living Room Design Directions</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Interior Design - Rachel Henderson Interiors.jpeg" alt="Interior Design - Rachel Henderson Interiors">
+      <h3>Interior Design - Rachel Henderson Interiors</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/India Mahdavi interior design st_petersburg (1).jpeg" alt="India Mahdavi Interior Design">
+      <h3>India Mahdavi Interior Design</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/I spend a lot of time thinking about how to decorate my house_🤍.jpeg" alt="Thinking About House Decoration">
+      <h3>Thinking About House Decoration</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Small Balcony Design Ideas for a Stylish Retreat.jpeg" alt="Small Balcony Design Ideas">
+      <h3>Small Balcony Design Ideas</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Boho Rugs For the Living Room_ 10 Ideas to Style Your Lounge - Melanie Jade Design.jpeg" alt="Boho Rugs For the Living Room">
+      <h3>Boho Rugs For the Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/𝓒𝓸𝓽𝓽𝓪𝓰𝓮 𝓚𝓲𝓽𝓬𝓱𝓮𝓷 𝓓𝓮𝓬𝓸𝓻 _ Dream house interior, Dream house rooms, House rooms.jpeg" alt="Boho Rugs For the Living Room">
+      <h3>Boho Rugs For the Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/neutral.jpeg" alt="Boho Rugs For the Living Room">
+      <h3>Boho Rugs For the Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/pastel.jpeg" alt="Boho Rugs For the Living Room">
+      <h3>Boho Rugs For the Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/4467642a-e23c-4fb1-a599-72e80835dd46.jpeg" alt="Boho Rugs For the Living Room">
+      <h3> Light-Balcony </h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/24 Royal and Warm Blue Kitchen Design Ideas.jpeg" alt="Boho Rugs For the Living Room">
+      <h3>Pastel Kitchen </h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Dark bedroom.jpg" alt="Boho Rugs For the Living Room">
+      <h3>Dark & Bold Bed Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Black Interior Design Project.jpg" alt="Boho Rugs For the Living Room">
+      <h3>Classic Black  Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Bohemian Bliss_ A Guide to Eclectic Home Decor (5).jpg" alt="Boho Rugs For the Living Room">
+      <h3>Boho Rugs For the Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Feature Friday_ Plaids and Poppies (2).jpg" alt="Boho Rugs For the Living Room">
+      <h3>Boho Rugs For the Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/Orange & White Bedroom Colour Combination Ideas I Summer Bedroom Inspo.jpg" alt="Boho Rugs For the Living Room">
+      <h3>Neutral Bed Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/How Decorilla does the _Unexpected Red Theory_ in interior design projects (2).jpg" alt="Boho Rugs For the Living Room">
+      <h3>Black & Red  Living Room</h3>
+    </div>
+    <div class="gallery-item">
+      <img src="./assets/studio/How Decorilla does the _Unexpected Red Theory_ in interior design projects.jpg" alt="Boho Rugs For the Living Room">
+      <h3>Red Asthetic Room</h3>
+    </div>
+  </div>
+
+  <script>
+    function searchArtwork() {
+      var input, filter, gallery, items, img, alt, i, txtValue;
+      input = document.getElementById('searchInput');
+      filter = input.value.toUpperCase();
+      gallery = document.querySelector('.gallery');
+      items = gallery.querySelectorAll('.gallery-item');
+
+      for (i = 0; i < items.length; i++) {
+        img = items[i].querySelector('img');
+        alt = img.getAttribute('alt');
+        txtValue = alt.toUpperCase();
+        if (txtValue.indexOf(filter) > -1) {
+          items[i].style.display = '';
+        } else {
+          items[i].style.display = 'none';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

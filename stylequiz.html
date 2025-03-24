@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 600px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  .quiz-question {
+    margin-bottom: 20px;
+  }
+  .quiz-options label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .quiz-options input[type="radio"],
+  .quiz-options input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .result-image {
+    margin-top: 30px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Style Quiz</h1>
+    <div class="quiz-question">
+      <p>Select a Color Palette:</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="colorPalette" value="neutral">Neutral</label>
+        <label><input type="radio" name="colorPalette" value="pastel">Pastel</label>
+        <label><input type="radio" name="colorPalette" value="vibrant">Vibrant</label>
+      </div>
+    </div>
+    <div class="quiz-question">
+      <p>Choose Your Aesthetic:</p>
+      <div class="quiz-options">
+        <label><input type="radio" name="aesthetic" value="modern">Modern</label>
+        <label><input type="radio" name="aesthetic" value="bohemian">Bohemian</label>
+        <label><input type="radio" name="aesthetic" value="minimalist">Minimalist</label>
+      </div>
+    </div>
+    <div class="quiz-question">
+      <p>Select Decor Pieces:</p>
+      <div class="quiz-options">
+        <label><input type="checkbox" name="decor" value="plants">Plants</label>
+        <label><input type="checkbox" name="decor" value="artwork">Artwork</label>
+        <label><input type="checkbox" name="decor" value="rugs">Rugs</label>
+      </div>
+    </div>
+    <button type="button" class="submit-btn" onclick="submitQuiz()">Submit</button>
+    <div id="imageResult" style="display: none;">
+      <img src="" alt="Result Image" class="result-image" id="resultImage">
+    </div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const colorPalette = document.querySelector('input[name="colorPalette"]:checked').value;
+      const aesthetic = document.querySelector('input[name="aesthetic"]:checked').value;
+      const decor = Array.from(document.querySelectorAll('input[name="decor"]:checked')).map(item => item.value);
+
+      const imageUrl = getImageUrl(colorPalette, aesthetic, decor);
+
+      if (imageUrl) {
+        const imageElement = document.getElementById('resultImage');
+        imageElement.src = imageUrl;
+        document.getElementById('imageResult').style.display = 'block';
+      } else {
+        alert("No image found for the selected options.");
+      }
+    }
+
+    function getImageUrl(colorPalette, aesthetic, decor) {
+      const images = {
+        neutral: {
+          modern: './assets/studio/vibrant.jpeg',
+          bohemian: './assets/studio/pastel.jpeg',
+          minimalist: './assets/studio/vibrant.jpeg',
+        },
+        pastel: {
+          modern: './assets/studio/pastel.jpeg',
+          bohemian: './assets/studio/vibrant.jpeg',
+          minimalist: './assets/studio/vibrant.jpeg',
+        },
+        vibrant: {
+          modern: './assets/studio/pastel.jpeg',
+          bohemian: './assets/studio/vibrant.jpeg',
+          minimalist: './assets/studio/vibrant.jpeg',
+        }
+      };
+
+      const categoryImages = images[colorPalette];
+      if (!categoryImages) return '';
+
+      const imageUrl = categoryImages[aesthetic];
+      if (!imageUrl) return '';
+
+      const decorText = decor.join('+');
+      return `${imageUrl}?decor=${decorText}`;
+    }
+  </script>
+</body>
+</html>
